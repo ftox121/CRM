@@ -1,0 +1,48 @@
+<!-- crm/templates/crm/home.html -->
+
+{% extends 'crm/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Create Order</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger">
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Create Order</button>
+    </form>
+
+    <hr>
+
+    <h2>Existing Orders</h2>
+    <ul class="list-group">
+        {% for order in orders %}
+            <li class="list-group-item">
+                <strong>Address:</strong> {{ order.address }}<br>
+                <strong>City:</strong> {{ order.city }}<br>
+                <strong>Delivery:</strong> {{ order.delivery }}<br>
+                <strong>Phone:</strong> {{ order.phone }}<br>
+                <form action="{% url 'crm:delete_order' order.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No orders found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

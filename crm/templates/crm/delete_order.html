@@ -1,0 +1,21 @@
+<!-- crm/templates/crm/delete_order.html -->
+
+{% extends 'crm/base.html' %}
+
+{% block title %}Delete Order{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Delete Order</h2>
+    <p>Are you sure you want to delete this order?</p>
+    <p><strong>Address:</strong> {{ order.address }}</p>
+    <p><strong>City:</strong> {{ order.city }}</p>
+    <p><strong>Delivery:</strong> {{ order.delivery }}</p>
+    <p><strong>Phone:</strong> {{ order.phone }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'crm:home' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

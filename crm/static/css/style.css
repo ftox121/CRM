@@ -1,0 +1,31 @@
+ body {
+            background-color: #f8f9fa; /* Ярко-серый */
+        }
+        .navbar {
+            background-color: #343a40; /* Темно-серый для контраста */
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .sidebar {
+            background-color: #343a40;
+            color: #ffffff;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            color: #ffffff;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+        }

@@ -1,0 +1,38 @@
+{% extends 'crm/base.html' %}
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Profile</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Personal Information</h5>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" value="{{ request.user.username }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" value="{{ request.user.email }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="avatar" class="form-label">Avatar</label>
+                    {% if form.avatar.value %}
+                        <img src="{{ form.avatar.value.url }}" alt="Avatar" class="img-thumbnail mb-3" style="max-width: 200px;">
+                    {% endif %}
+                    {{ form.avatar }}
+                </div>
+                <div class="mb-3">
+                    <label for="bio" class="form-label">Bio</label>
+                    {{ form.bio }}
+                </div>
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
